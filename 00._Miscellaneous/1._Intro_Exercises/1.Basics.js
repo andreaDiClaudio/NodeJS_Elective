@@ -35,5 +35,4 @@ console.log(resultThree);
 console.log(Number("2222sdsdsdsdss"));
 //parseInt, in case of not number, will return only the numbers inside the string
 console.log(parseInt("222222sdsdsdsdss"));
-
 // --------------------------------------
