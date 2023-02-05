@@ -18,11 +18,10 @@ console.log(result);
 const anotherNumberOne = "1.10";
 const anotherNumberTwo = "2.30";
 
-const resultTwo = (
-  parseFloat(anotherNumberOne) + parseFloat(anotherNumberTwo)
-).toFixed(2);
+const resultTwo = parseFloat(anotherNumberOne) + parseFloat(anotherNumberTwo);
+const resultTwoWithTwoDecimals = resultTwo.toFixed(2);
 
-console.log(resultTwo);
+console.log(resultTwoWithTwoDecimals);
 
 // --------------------------------------
 // Exercise 5 - Decimals and average
@@ -33,7 +32,7 @@ const three = 98;
 
 // Show in the console the avg. with 5 decimals
 
-const average = one + two + three;
+const average = (one + two + three) / 3;
 const averageWithDecimals = average.toFixed(5);
 
 console.log(averageWithDecimals);
