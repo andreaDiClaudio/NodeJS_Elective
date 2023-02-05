@@ -57,5 +57,4 @@ const fact = "You are learning javascript!";
 const capitalJ = fact.replace("j", "J");
 
 console.log(capitalJ);
-
 // --------------------------------------
