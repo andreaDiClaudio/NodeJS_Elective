@@ -1,21 +1,23 @@
 "use strict";
 //It does not have an extension which means that it is a package and not a file
-//const express = require("express");
+const express = require("express");
 
 //We just logged the library. the same result we can find inside the file in the 'node_modules'
 //console.log(express);
 
-//const app = express();
+const app = express();
+
+app.use(express.json());
 
 //this is different because we instatiated the library
 //console.log(app);
 
 //Import and instantiated the library
-const app = require("express")();
+//const app = require("express")();
 
 //route (entire thing)
 //HTTP method
-//   | endpoint     | callback funtion
+//       | endpoint     | callback funtion
 app.get("/", (req, res) => {
   res.send({ message: "Our first route" }); //express will do the conversion from js object ot json
 });
@@ -37,6 +39,23 @@ app.get("/about", (rew, res) => {
     `<h1>About</h1>
         <h3>This is my about page</h3>`
   );
+});
+
+//One way to send data is through query strings
+app.get("/battester", (req, res) => {
+  console.log(req.query);
+
+  res.send({ message: `The bat is ${req.query.adjective}` });
+});
+
+//in Spring the pathvariable was declared {variable}, while in js it is declared with ':'
+//another way of sending data thorugh pathvariable
+app.get("/bottle/:bottleSize", (req, res) => {
+  res.send({ message: req.params.bottleSize });
+});
+
+app.post("/package", (req, res) => {
+  res.send({ message: req.body });
 });
 
 //Why do we have to send json? (exam question)
