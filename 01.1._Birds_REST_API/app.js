@@ -36,6 +36,17 @@ const birdFour = {
 birds.push(birdOne, birdTwo, birdThree, birdFour);
 
 //HTTP Methods
+//GET introduction page
+app.get("/", (req, res) => {
+  res.send(
+    `<h1>Birds Rest API Exercise</h1>
+        <h3>Endpoints:</h3>
+        <p>• /birds</p>
+        <p>• /birds/name/{name}</p>
+        <p>• /birds/classification/{classification}</p>`
+  );
+});
+
 //GET all
 app.get("/birds", (req, res) => {
   res.send(birds);
