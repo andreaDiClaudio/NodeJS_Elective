@@ -34,7 +34,7 @@ app.get("/kickDinosaur", (req, res) => {
 });
 //-----------------------
 
-app.get("/about", (rew, res) => {
+app.get("/about", (req, res) => {
   res.send(
     `<h1>About</h1>
         <h3>This is my about page</h3>`
