@@ -63,22 +63,6 @@ app.get("/birds/:id", (req, res) => {
   res.send({data: found})
 });
 
-//GET by name
-app.get("/birds/name/:birdName", (req, res) => {
-  const found = birds.find(
-    (bird) => bird.name.toLowerCase() == req.params.birdName.toLowerCase());
-
-  res.send({ found });
-});
-
-//GET by classification
-app.get("/birds/classification/:classification", (req, res) => {
-  const found = birds.find(
-    (bird) => bird.classification.toLowerCase() == req.params.classification.toLowerCase());
-
-  res.send({ found });
-});
-
 //Port
 app.listen(8080, () => {
   console.log("Server is running on port", 8080);
