@@ -1,8 +1,8 @@
 "use strict";
 
-const express = require("express");
-const app = express();
-app.use(express.json());
+const express = require("express");//Importing the module
+const app = express();//Instanciating the module
+app.use(express.json());//For parsing the body as json.
 
 //Represents the table in the database
 const birds = [];
@@ -10,26 +10,30 @@ const birds = [];
 //Creation of 'bird' objects
 const birdOne = {
   id: 1,
-  name: "Andrea",
-  classification: "Parrot",
+  name: "Parrot",
+  maleRating: 10,
+  femaleRating: 2
 };
 
 const birdTwo = {
   id: 2,
-  name: "Nicolas",
-  classification: "Pigeon",
+  name: "Pigeon",
+  maleRating: 8,
+  femaleRating: 7
 };
 
 const birdThree = {
   id: 3,
-  name: "Anders",
-  classification: "Owl",
+  name: "Owl",
+  maleRating: 9,
+  femaleRating: 6
 };
 
 const birdFour = {
   id: 4,
-  name: "Jone",
-  classification: "Toucan",
+  name: "Toucan",
+  maleRating: 5,
+  femaleRating: 5
 };
 
 //Populating the 'table'
@@ -49,15 +53,14 @@ app.get("/", (req, res) => {
 
 //GET all
 app.get("/birds", (req, res) => {
-  res.send(birds);
+  res.send({data: birds});
 });
 
-//GET by id
+//GET by id                      | Callback function
 app.get("/birds/:id", (req, res) => {
-  const requestedPosition = req.params.id - 1;
-  const birdById = birds.at(requestedPosition);
+  const found = birds.find(bird => bird.id === Number(req.params.id));
 
-  res.send({ birdById });
+  res.send({data: found})
 });
 
 //GET by name
@@ -77,4 +80,6 @@ app.get("/birds/classification/:classification", (req, res) => {
 });
 
 //Port
-app.listen(8080);
+app.listen(8080, () => {
+  console.log("Server is running on port", 8080);
+});
