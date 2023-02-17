@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
     `<h1>Birds Rest API Exercise</h1>
         <h3>Endpoints:</h3>
         <p>• /birds</p>
-        <p>• /birds/{id}</p>
+        <p>• /birds/{id}</p>`
   );
 });
 
