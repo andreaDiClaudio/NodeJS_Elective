@@ -32,4 +32,4 @@ const notPricelessShips = spaceships.filter(spaceship => spaceship.isPriceless =
 
 //task find a spaceship that costs less than 2 million money
 const affordableSpaceship = spaceships.find(spaceship => spaceship.cost < 2_000_000);
-console.log(affordableSpaceship);
+    console.log(affordableSpaceship);
