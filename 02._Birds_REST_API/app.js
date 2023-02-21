@@ -64,7 +64,7 @@ app.get("/birds", (req, res) => {
   res.send({data: birds});
 });
 
-//GET by id                     | Callback function
+//GET by id - Tested on Postman
 app.get("/birds/:id", (req, res) => {
   const requestedBird = birds.find(bird => bird.id === Number(req.params.id));
 
@@ -73,7 +73,7 @@ app.get("/birds/:id", (req, res) => {
   res.send({data: requestedBird});
 });
 
-//POST 
+//POST  - Tested on Postman
 app.post("/birds", (req, res) => {
   const body = req.body;
 
@@ -87,7 +87,7 @@ app.post("/birds", (req, res) => {
 //I tried to have different implementation of PUT and PATCH methdos based on the definition: 
 //https://www.geeksforgeeks.org/difference-between-put-and-patch-request/
 
-//PUT 
+//PUT - Tested on Postman
 app.put("/birds/:id", (req,res) => {
   const requestedBird = birds.find(bird => bird.id === Number(req.params.id));
 
@@ -100,7 +100,7 @@ app.put("/birds/:id", (req,res) => {
   res.send({data: requestedBird});
 })
 
-//PATCH
+//PATCH - Tested on Postman
 app.patch("/birds/:id", (req,res) => {
   const requestedBird = birds.find(bird => bird.id === Number(req.params.id));
 
@@ -113,7 +113,7 @@ app.patch("/birds/:id", (req,res) => {
   res.json(requestedBird);
 });
 
-//DELETE
+//DELETE - Tested on Postman
 app.delete("/birds/:id", (req,res) => {
   const requestedBird = birds.find(bird => bird.id === Number(req.params.id));
   const birdIndex = birds.indexOf(requestedBird);
