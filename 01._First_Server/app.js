@@ -58,6 +58,27 @@ app.post("/package", (req, res) => {
   res.send({ message: req.body });
 });
 
+console.log(new Date());//Zulu
+console.log(Date());//CET
+console.log(Date.now()); //unix epoch time (unix time)
+
+/*TIME*/
+app.get("/time/time", (req, res) => {
+  res.send({
+    timeUTC: new Date(),
+    timeLocal: Date(),
+    unixTimestamp: Date.now()
+  });
+});
+
+app.get("/time/day", (req, res) => {
+  res.send({ data: new Date().toLocaleString("default", { weekday: 'long' })})
+});
+
+app.get("/time/month", (req, res) => {
+  res.send({ data: new Date().toLocaleString("default", { month: 'long' })})
+});
+
 //Why do we have to send json? (exam question)
 //-- Every language has a library that can read/interpret json --
 
