@@ -9,6 +9,8 @@ app.use(express.json());//For parsing the body as json.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))//Parses all the urlencoded bodies
 
+let currentId = 4;
+
 //Represents the table in the database
 const birds = [];
 
@@ -77,7 +79,7 @@ app.get("/birds/:id", (req, res) => {
 app.post("/birds", (req, res) => {
   const body = req.body;
 
-  const calculateId = birds.length + 1;
+  let calculateId = ++currentId;//Prefix notation updates before
   const newBird = {id: calculateId, ...body};
   birds.push(newBird);
 
@@ -102,25 +104,36 @@ app.put("/birds/:id", (req,res) => {
 
 //PATCH - Tested on Postman
 app.patch("/birds/:id", (req,res) => {
-  const requestedBird = birds.find(bird => bird.id === Number(req.params.id));
+  /*
+  const foundIndex = birds.findIndex(bird => bird.id === Number(req.params.id));
 
   if (!requestedBird) return res.sendStatus(404);
-
   req.body.hasOwnProperty("name") ? requestedBird.name = req.body.name : requestedBird.name;
   req.body.hasOwnProperty("maleRating") ? requestedBird.maleRating = req.body.maleRating : requestedBird.maleRating;
   req.body.hasOwnProperty("femaleRating") ? requestedBird.femaleRating = req.body.femaleRating : requestedBird.femaleRating;
-
-  res.json(requestedBird);
-});
+*/
+  const foundIndex = birds.findIndex(bird => bird.id === Number(req.params.id));
+  if (!foundIndex === -1) {
+    res.status(404).send({message: `no bird found with id ${req.params.id}`})
+  } else {
+    // This can change the ID!
+    //foundBird = {...foundBird, ...req.params}
+    const foundBird = birds[foundIndex];
+    const birdToCreate = {...foundBird, ...req.body, id: foundBird.id}
+    birds[foundIndex] = birdToCreate;
+    res.send({birdToCreate})}
+  });
 
 //DELETE - Tested on Postman
 app.delete("/birds/:id", (req,res) => {
-  const requestedBird = birds.find(bird => bird.id === Number(req.params.id));
-  const birdIndex = birds.indexOf(requestedBird);
+  const requestedBirdIndex = birds.findIndex(bird => bird.id === Number(req.params.id));
 
-  birds.splice(birdIndex, 1);
-
-  res.sendStatus(200);
+  if (requestedBirdIndex === -1) {
+    res.status(404).send({data: requestedBirdIndex, message: `no bird found with id: ${req.params.id}` });
+  } else {
+    birds.splice(requestedBirdIndex, 1)[0];
+    res.sendStatus(200);
+  }
 })
 
 //Port
