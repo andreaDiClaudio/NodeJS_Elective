@@ -1,7 +1,7 @@
 "use strict"
 
 const express = require("express");
-const app = express()
+const app = express();
 
 app.use(express.static("public"));//you are specifying where to find the static files. and allows the client to access the file only inside that folder
 
