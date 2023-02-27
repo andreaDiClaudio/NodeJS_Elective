@@ -4,6 +4,11 @@ body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
   }
   
+  #activity-wrapper{
+    display: flex;
+    gap: 10px;
+  }
+
   .datetime {
     font-size: 16px;
     padding: 24px;
