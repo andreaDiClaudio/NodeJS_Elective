@@ -1,6 +1,6 @@
 body {
     background: #222222;
-    color: orange;
+    color: rgb(231, 231, 231);
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     padding: 10px;
   }
@@ -8,6 +8,7 @@ body {
   #activity-wrapper{
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 10px;
   }
 
