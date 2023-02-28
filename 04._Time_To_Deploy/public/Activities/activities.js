@@ -43,32 +43,58 @@ setInterval(() => {
 }, 200);
 */
 
+function formatDate(date){
+  const stringDate = date.toString();
+
+  const arr = stringDate.split("-");
+
+  console.log(arr);
+
+  const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+  const finalDate = (`${arr[2]} , ${months[arr[1].replace(/^0+/, '')] } ${arr[0]}`)
+  
+  return finalDate;
+
+}
+
 addActivityButton.addEventListener('click', addActivity)
 
 function addActivity(){
 
+  //Formates date
+  const formattedDate = formatDate(document.getElementById("date-input").value);
+
+  //Wrapper
   const dateTimeWrapper = document.createElement("div");
-  dateTimeWrapper.className = "datetime"
+  dateTimeWrapper.className = "datetime";
+  dateTimeWrapper.style.borderRight = `10px ${document.getElementById("color-input").value} solid`;
 
-  const dateWrapper = document.createElement("div")
-  dateWrapper.className = "date";
-  const date = document.createElement("p")
+  //date
+  const dateWrapper = document.createElement("div");
+  const date = document.createElement("h2");
 
-  const timeWrapper = document.createElement("div")
-  timeWrapper.className = "time";
-  const time = document.createElement("p")
+  //Time
+  const timeWrapper = document.createElement("div");
+  const time = document.createElement("h1");
 
-  const description = document.createElement("p")
+  //Description
+  const descriptionWrapper = document.createElement("div");
+  const description = document.createElement("p");
 
-  date.innerText = document.getElementById("date-input").value;
+  //fill fields
+  date.innerText = formattedDate;
   time.innerText = document.getElementById("time-input").value;
-  //description.innerText(document.getElementById("description-input").value)
+  description.innerText = document.getElementById("description-input").value;
 
   dateWrapper.appendChild(date);
   timeWrapper.appendChild(time);
+  descriptionWrapper.appendChild(description);
 
-  dateTimeWrapper.appendChild(dateWrapper);
   dateTimeWrapper.appendChild(timeWrapper);
+  dateTimeWrapper.appendChild(dateWrapper);
+  dateTimeWrapper.appendChild(descriptionWrapper);
 
   activityWrapper.appendChild(dateTimeWrapper);
 }
