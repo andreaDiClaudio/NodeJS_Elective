@@ -8,33 +8,18 @@
     <title>Activities</title>
 </head>
 <body>
-    <h2>Create New Activity</h2>
-    <input type="date">
-    <input type="text" placeholder="Description">
-    <input type="color">
-    <input type="time">
-    <button>Create</button>
+  <h2>Add Activity</h2>
+  
+  <input type="date" id="date-input">
+  <input type="time" id="time-input">
+  <input type="text" placeholder="Description" id="description-input">
+  <input type="color" id="color-input">
+  <button id="add-activity-button">Add</button>
 
-    <h2>Your Activities</h1>
-        <div id="activity-wrapper">
-    <div class="datetime">
-        <div class="time"></div>
-        <div class="date"></div>
-      </div>
-
-      <div class="datetime">
-        <div class="time"></div>
-        <div class="date"></div>
-      </div>
-      
-      <div class="datetime">
-        <div class="time"></div>
-        <div class="date"></div>
-      </div>
-
-
+  <h2>Your Activities</h1>
+    <div id="activity-wrapper">
 
     </div>
-      <script src="./Activities/activities.js"></script>
+    <script src="./Activities/activities.js"></script>
 </body>
 </html>

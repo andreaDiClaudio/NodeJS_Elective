@@ -1,11 +1,13 @@
 body {
     background: #222222;
     color: orange;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px;
   }
   
   #activity-wrapper{
     display: flex;
+    justify-content: center;
     gap: 10px;
   }
 
