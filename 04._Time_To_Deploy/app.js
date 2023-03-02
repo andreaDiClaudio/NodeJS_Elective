@@ -40,7 +40,7 @@ app.post("/activities", (req,res)=>{
     }
     activities.push(newActivity);
     
-    res.sendFile(__dirname + "/public/Activities/activities.html");
+    res.redirect("/");
 });
 
 const PORT = 8080;
