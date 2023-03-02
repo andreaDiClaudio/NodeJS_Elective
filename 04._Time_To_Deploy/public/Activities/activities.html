@@ -74,7 +74,7 @@ const addActivityButton = document.getElementById("add-activity-button");
 window.onload= loadActivities();
 
 function loadActivities(){
-  fetch("http://localhost:8080/api/activities") //returns a bitstream. that is why we need to convert the response to json
+  fetch("/api/activities") //returns a bitstream. that is why we need to convert the response to json
     .then(response => response.json())//Converted in Js
     .then(result => {
   const activityWrapper = document.getElementById("activity-wrapper");
@@ -118,6 +118,7 @@ function loadActivities(){
     })
   });
 }
+
 
 function formatDate(date){
   const stringDate = date.toString();
