@@ -5,51 +5,10 @@ const timeWrapper = document.getElementById("time-wrapper");
 const dateWrapper = document.getElementById("date-wrapper");
 const addActivityButton = document.getElementById("add-activity-button");
 
-addActivityButton.addEventListener('click', addActivity)
-
 window.onload= loadActivities();
 
-
-function addActivity(){
-  postActivity();
-
-  emptyInputs();
-}
-
-async function postActivity(){
-  const date =  formatDate(document.getElementById("date-input").value);
-  const time = document.getElementById("time-input").value;
-  const description = document.getElementById("description-input").value;
-  const color = document.getElementById("color-input").value;
-
-  const activity = {
-    "date": date,
-    "time": time,
-    "desc": description,
-    "color": color
-    }
-
-    const fetchOptions = {
-      method: 'POST',
-      headers: {
-        "content-type": "application/json"
-        },
-      body: ""
-      }
-
-    fetchOptions.body = JSON.stringify(activity);
-
-    const response = await fetch("http://localhost:8080/activities", fetchOptions);
-
-    if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(errorMessage)
-    }
-    location.reload();
-}
-
 function loadActivities(){
-  fetch("http://localhost:8080/api/activities") //returns a bitstream. that is why we need to convert the response to json
+  fetch("/api/activities") //returns a bitstream. that is why we need to convert the response to json
     .then(response => response.json())//Converted in Js
     .then(result => {
   const activityWrapper = document.getElementById("activity-wrapper");
@@ -94,12 +53,6 @@ function loadActivities(){
   });
 }
 
-function emptyInputs(){
-  document.getElementById("time-input").value = "";
-  document.getElementById("description-input").value = "";
-  document.getElementById("date-input").value = "";
-  document.getElementById("color-input").value = "";
-}
 
 function formatDate(date){
   const stringDate = date.toString();
