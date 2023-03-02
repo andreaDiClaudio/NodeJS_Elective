@@ -25,7 +25,7 @@ app.get("/api/activities", (req,res) => {
 //Post request to save new activities
 app.post("/activities", (req,res)=>{
     
-    const date = req.body.date;
+    const date = formatDate(req.body.date);
     const time = req.body.time;
     const description = req.body.description;
     const color = req.body.color;
@@ -47,3 +47,15 @@ const PORT = 8080;
 app.listen(PORT, (error) => {
     error ? console.log(error) : console.log(`Server is running on port: ${PORT}`);
 })
+
+function formatDate(date){
+    const stringDate = date.toString();
+    const arr = stringDate.split("-");
+  
+    const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  
+    const finalDate = (`${arr[2]} , ${months[arr[1].replace(/^0+/, '') - 1] } ${arr[0]}`)
+    
+    return finalDate;
+  }
