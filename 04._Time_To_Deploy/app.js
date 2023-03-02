@@ -1,16 +1,16 @@
 "use strict";
 
+const express = require("express");//Importing the module
+const app = express();//Instanciating the module
+
+const bodyParser = require('body-parser');//Needed for post method
+app.use(express.json());//For parsing the body as json.
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}))//Parses all the urlencoded bodies
+
 const activities = [];
 
 let currentId = 0;
-
-const express = require("express");
-const app = express();
-app.use(express.static("public"));
-
-const bodyParser = require('body-parser');//Needed for post method
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}))//Parses all the urlencoded bodies
 
 //HTTP Methods
 app.get("/", (req, res) => {
@@ -24,6 +24,7 @@ app.get("/api/activities", (req,res) => {
 
 //Post request to save new activities
 app.post("/activities", (req,res)=>{
+    
     const date = req.body.date;
     const time = req.body.time;
     const description = req.body.description;
@@ -37,11 +38,9 @@ app.post("/activities", (req,res)=>{
         description: description,
         color: color
     }
-
-    console.log(description);
     activities.push(newActivity);
-
-    res.send({data: newActivity});
+    
+    res.sendFile(__dirname + "/public/Activities/activities.html");
 });
 
 const PORT = 8080;
