@@ -14,6 +14,7 @@ let currentId = 0;
 
 /* ELIMINATE IT*/
 const toEliminate = {
+    id : 0,
     date: "2023-03-02",
     time: "12:33",
     description: "lololo",
@@ -27,10 +28,6 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/public/Activities/activities.html");
 });
 
-//API
-app.get("/api/activities", (req,res) => {
-    res.send({data: activities});
-});
 
 //Post request to save new activities
 app.post("/activities", (req,res)=>{
@@ -51,6 +48,22 @@ app.post("/activities", (req,res)=>{
     activities.push(newActivity);
     
     res.redirect("/");
+});
+
+app.delete("/api/activity/:id", (req, res) => {
+    const activityIndex = activities.findIndex(activity => activity.id === Number(req.params.id))
+
+    if (activityIndex === -1) {
+        res.status(404).send({data: activityIndex, message: `no activity found with id: ${req.params.id}`});
+    } else {
+        activities.splice(activityIndex, 1)[0];
+        res.sendStatus(200);
+    }
+});
+
+//API
+app.get("/api/activities", (req,res) => {
+    res.send({data: activities});
 });
 
 //Function to formate date from 02/02/2023 to February 2nd, 2023
