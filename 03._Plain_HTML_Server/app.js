@@ -1,13 +1,20 @@
 "use strict"
 
 const express = require("express");
+const { getTanks, addTank } = require("./util/tanks.js");
 const app = express();
 
 app.use(express.static("public"));//you are specifying where to find the static files. and allows the client to access the file only inside that folder
 
+const tanksUtil = require("./util/tanks.js");
+console.log(tanksUtil);
+
+//console.log(getTanks())//call function in another module
+
 const tanks = [
     {name: "Leopard", nationality: "Germany", year: 1943},
-    {name: "M1 Abrams", version: "M1"}
+    {name: "M1 Abrams", version: "M1"},
+    {name: "Tiger"}
 ]
 
 app.get("/", (req, res) => {
@@ -22,6 +29,10 @@ let visitorCount = 0;
 app.get("/visitors", (req, res) => {
     res.sendFile(__dirname + "/public/visitors/visitors.html")
 })
+
+app.get("/museumguards", (req,res) => {
+    res.sendFile(__dirname + "/public/museumGuards/museumGuards.html")
+});
 
 /* API */
 app.get("/api/tanks", (req, res) => {
