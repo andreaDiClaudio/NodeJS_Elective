@@ -4,7 +4,6 @@ const activityWrapper = document.getElementById("activity-wrapper");
 const timeWrapper = document.getElementById("time-wrapper");
 const dateWrapper = document.getElementById("date-wrapper");
 const addActivityButton = document.getElementById("add-activity-button");
-let counter = 1;
 
 window.onload= loadActivities();
 
@@ -46,19 +45,41 @@ function loadActivities(){
     descriptionWrapper.appendChild(description);
     dateTimeWrapper.appendChild(descriptionWrapper);
 
-    //Edit Button
-    const editActivityButton = document.createElement("button");
-
     //Delete Button
-    const delteActivityButton = document.createElement("button");
-    delteActivityButton.id = `activity-${counter}-delete-button`;
-    delteActivityButton.innerText = "Delete";
+    const deleteActivityButton = document.createElement("button");
+    deleteActivityButton.id = `activity${activity.id}-delete-button`;
+    deleteActivityButton.innerText = "Delete";
+    deleteActivityButton.addEventListener('click', () => {
+      const confirmationMessage = confirm(`Are your sure you want to delete the activity ${activity.description}?`);
+      if (confirmationMessage) {
+        doDeleteActivity(activity.id);
+        location.reload
+      }
+    });
     //Append
-    dateTimeWrapper.appendChild(delteActivityButton);
+    dateTimeWrapper.appendChild(deleteActivityButton);
 
     activityWrapper.appendChild(dateTimeWrapper);
-
-    counter ++;
     })
   });
+}
+
+//NOT FINAL
+async function doDeleteActivity(id) {
+  const response = await deleteActivity(id);
+  return response;
+}
+
+async function deleteActivity(id) {
+  const fetchOptions = {
+    method: 'DELETE'
+  }
+
+  const response = await fetch(`/api/activity/${id}`, fetchOptions)
+
+  if (!response.ok) {
+    const errorMessage = await response.text()
+    throw new Error(errorMessage)
+}
+location.reload()
 }
