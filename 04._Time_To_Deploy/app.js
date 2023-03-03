@@ -17,7 +17,7 @@ const toEliminate = {
     id : 0,
     date: "2023-01-01",
     time: "00:00",
-    description: "try to edit me, and then delete me.",
+    description: "try to delete me and create a new activity yourself!",
     color: "#7c2a00"
 }
 
