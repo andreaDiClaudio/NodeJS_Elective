@@ -15,9 +15,9 @@ let currentId = 0;
 /* ELIMINATE IT*/
 const toEliminate = {
     id : 0,
-    date: "2023-03-02",
-    time: "12:33",
-    description: "lololo",
+    date: "2023-01-01",
+    time: "00:00",
+    description: "try to edit me, and then delete me.",
     color: "#7c2a00"
 }
 

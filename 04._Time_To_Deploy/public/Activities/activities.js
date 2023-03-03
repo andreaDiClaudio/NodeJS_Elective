@@ -45,12 +45,20 @@ function loadActivities(){
     descriptionWrapper.appendChild(description);
     dateTimeWrapper.appendChild(descriptionWrapper);
 
+    //Edit Button
+    const editActivityButton = document.createElement("button");
+    editActivityButton.id = `activity${activity.id}-edit-button`;
+    editActivityButton.innerText = "Edit";
+    //TODO Implement Edit
+    //TODO Append edit button
+
     //Delete Button
     const deleteActivityButton = document.createElement("button");
     deleteActivityButton.id = `activity${activity.id}-delete-button`;
     deleteActivityButton.innerText = "Delete";
+    //NOT FINAL
     deleteActivityButton.addEventListener('click', () => {
-      const confirmationMessage = confirm(`Are your sure you want to delete the activity ${activity.description}?`);
+      const confirmationMessage = confirm(`Are your sure you want to delete the activity: "${activity.description}"?`);
       if (confirmationMessage) {
         doDeleteActivity(activity.id);
         location.reload
