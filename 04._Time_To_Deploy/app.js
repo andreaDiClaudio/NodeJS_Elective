@@ -8,9 +8,19 @@ app.use(express.json());//For parsing the body as json.
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))//Parses all the urlencoded bodies
 
+//Variables
 const activities = [];
-
 let currentId = 0;
+
+/* ELIMINATE IT*/
+const toEliminate = {
+    date: "2023-03-02",
+    time: "12:33",
+    description: "lololo",
+    color: "#7c2a00"
+}
+
+activities.push(toEliminate)
 
 //HTTP Methods
 app.get("/", (req, res) => {
@@ -43,11 +53,7 @@ app.post("/activities", (req,res)=>{
     res.redirect("/");
 });
 
-const PORT = 8080;
-app.listen(PORT, (error) => {
-    error ? console.log(error) : console.log(`Server is running on port: ${PORT}`);
-})
-
+//Function to formate date from 02/02/2023 to February 2nd, 2023
 function formatDate(date){
     const stringDate = date.toString();
     const arr = stringDate.split("-");
@@ -59,3 +65,8 @@ function formatDate(date){
     
     return finalDate;
   }
+
+const PORT = 8080;
+app.listen(PORT, (error) => {
+    error ? console.log(error) : console.log(`Server is running on port:`, PORT);
+})
