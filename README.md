@@ -1,2 +1,2 @@
 # NodeJS_Elective_2023
-Repository for the elective 'NodeJS'
+Documenntation website that contains all the topics covered during weeks 7 to 9.
