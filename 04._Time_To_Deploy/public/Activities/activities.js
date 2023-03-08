@@ -3,6 +3,7 @@
 const activityWrapper = document.getElementById("activity-wrapper");
 const timeWrapper = document.getElementById("time-wrapper");
 const dateWrapper = document.getElementById("date-wrapper");
+
 const addActivityButton = document.getElementById("add-activity-button");
 
 window.onload= loadActivities();
@@ -22,16 +23,29 @@ function loadActivities(){
 
     //date
     const dateWrapper = document.createElement("div");
-    const date = document.createElement("h2");
+    const date = document.createElement("p");
+    date.className = "date"
+    date.style.color = activity.color;
     date.innerText = activity.date;
     //Append
     dateWrapper.appendChild(date);
     dateTimeWrapper.appendChild(dateWrapper);
 
+    //Title
+    const titleWrapper = document.createElement("div");
+    titleWrapper.className = "title-wrapper"
+    const title = document.createElement("p");
+    title.className = "title";
+    title.innerText = activity.title;
+    //Append
+    titleWrapper.appendChild(title);
+    dateTimeWrapper.appendChild(titleWrapper);
+
     //Time
     const timeWrapper = document.createElement("div");
-    const time = document.createElement("h1");
+    const time = document.createElement("p");
     time.style.color = activity.color;
+    time.className = "time";
     time.innerText = activity.time;
     //Append
     timeWrapper.appendChild(time);
@@ -40,6 +54,7 @@ function loadActivities(){
     //Description
     const descriptionWrapper = document.createElement("div");
     const description = document.createElement("p");
+    description.className = "description";
     description.innerText = activity.description;
     //Append
     descriptionWrapper.appendChild(description);
@@ -50,15 +65,15 @@ function loadActivities(){
     editActivityButton.id = `activity${activity.id}-edit-button`;
     editActivityButton.innerText = "Edit";
     //TODO Implement Edit
+
     //TODO Append edit button
 
     //Delete Button
     const deleteActivityButton = document.createElement("button");
     deleteActivityButton.id = `activity${activity.id}-delete-button`;
     deleteActivityButton.innerText = "Delete";
-    //NOT FINAL
     deleteActivityButton.addEventListener('click', () => {
-      const confirmationMessage = confirm(`Are your sure you want to delete the activity: "${activity.description}"?`);
+      const confirmationMessage = confirm(`Are your sure you want to delete the activity: "${activity.title}"?`);
       if (confirmationMessage) {
         doDeleteActivity(activity.id);
         location.reload
@@ -72,7 +87,6 @@ function loadActivities(){
   });
 }
 
-//NOT FINAL
 async function doDeleteActivity(id) {
   const response = await deleteActivity(id);
   return response;

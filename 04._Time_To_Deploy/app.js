@@ -12,13 +12,23 @@ app.use(bodyParser.urlencoded({extended: true}))//Parses all the urlencoded bodi
 const activities = [];
 let currentId = 0;
 
-/* ELIMINATE IT*/
+//Today's date
+const today = new Date();
+const dd = String(today.getDate()).padStart(2, '0');
+const mm = String(today.getMonth() + 1).padStart(2, '0');
+const yyyy = today.getFullYear();
+const todayDate = `${yyyy}-${mm}-${dd}`;
+//Now
+let timeNow = today.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+/*Tutorial Activity*/
 const toEliminate = {
     id : 0,
-    date: "2023-01-01",
-    time: "00:00",
-    description: "try to delete me and create a new activity yourself!",
-    color: "#7c2a00"
+    date: formatDate(todayDate),
+    title: "Welcome",
+    time: timeNow,
+    description: "My activities gives you the possibilities to schedule your days! Try to delete this activity and create yours in the 'Add Activity' area :)",
+    color: "#70d072"
 }
 
 activities.push(toEliminate)
@@ -34,6 +44,7 @@ app.post("/activities", (req,res)=>{
     
     const date = formatDate(req.body.date);
     const time = req.body.time;
+    const title = req.body.title;
     const description = req.body.description;
     const color = req.body.color;
 
@@ -41,6 +52,7 @@ app.post("/activities", (req,res)=>{
     const newActivity = {
         id: calculateId, 
         date: date, 
+        title: title,
         time: time,
         description: description,
         color: color
@@ -50,15 +62,18 @@ app.post("/activities", (req,res)=>{
     res.redirect("/");
 });
 
-app.delete("/api/activity/:id", (req, res) => {
-    const activityIndex = activities.findIndex(activity => activity.id === Number(req.params.id))
+app.patch("/activity/:id", (req, res) => {
+    const foundIndex = activities.findIndex(activity => 
+        activity.id === Number(req.params.id));
 
-    if (activityIndex === -1) {
-        res.status(404).send({data: activityIndex, message: `no activity found with id: ${req.params.id}`});
-    } else {
-        activities.splice(activityIndex, 1)[0];
-        res.sendStatus(200);
-    }
+        if (!foundIndex === -1) {
+            res.status(404).send({message: `no activity with id: ${req.params.id}`})
+        } else {
+            const foundActivity = activities[foundIndex];
+            const activityToCreate = { id: foundActivity.id, ...foundActivity, ...req.body}
+            activities[foundIndex] = activityToCreate;
+            res.send({data: activityToCreate})
+        }
 });
 
 //API
@@ -78,6 +93,18 @@ function formatDate(date){
     
     return finalDate;
   }
+
+  app.delete("/api/activity/:id", (req, res) => {
+    const activityIndex = activities.findIndex(activity => activity.id === Number(req.params.id))
+
+    if (activityIndex === -1) {
+        res.status(404).send({data: activityIndex, message: `no activity found with id: ${req.params.id}`});
+    } else {
+        activities.splice(activityIndex, 1)[0];
+        res.sendStatus(200);
+    }
+});
+
 
 const PORT = 8080;
 app.listen(PORT, (error) => {
