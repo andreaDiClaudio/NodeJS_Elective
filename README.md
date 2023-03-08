@@ -1,2 +1,2 @@
 # NodeJS_Elective_2023
-Repository for the elective 'NodeJS'
+Repository for NodeJs elective
