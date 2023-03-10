@@ -43,6 +43,14 @@ app.get("/api/visitors", (req, res) => {
     res.send({data: visitorCount})
 })
 
+app.get("/api/guards", (req, res) => {
+    console.log(req.query); //req.query is an object with key value pairs
+    if (req.query.passport === "secret") {
+        return res.redirect("/api/tanks");
+    }
+    res.send({message: "You are not allowed to see tanks. Use the correct secret"});
+});
+
 app.put("/api/visitors", (req, res) => {
     res.send({data: ++visitorCount})
 });
