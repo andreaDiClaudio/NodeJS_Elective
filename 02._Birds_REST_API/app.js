@@ -86,9 +86,6 @@ app.post("/birds", (req, res) => {
   res.send({data: newBird});
 })
 
-//I tried to have different implementation of PUT and PATCH methdos based on the definition: 
-//https://www.geeksforgeeks.org/difference-between-put-and-patch-request/
-
 //PUT - Tested on Postman
 app.put("/birds/:id", (req,res) => {
   const requestedBird = birds.find(bird => bird.id === Number(req.params.id));

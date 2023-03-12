@@ -1,13 +1,21 @@
 //const express = require("express"); 
 //cannot use require anymore because inside the pacakge.json we declared: "type": "module"
-import express from "express";
-const app = express();
+//import express from "express";
+//const app = express();
 //const jokes = require("./util/jokes");
-//import jokes from "./util/jokes.js";//gives a experimental warning
+import jokes from "./util/jokes.js"
+//gives a experimental warning
 
 //serving static is when the browsers need an extra file etc.
 
+//import path from "path";
+
+import express from "express";
+const app = express();
+
 import path from "path";
+
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
     res.sendFile(path.resolve("public/pages/frontpage/frontpage.html"));
@@ -17,6 +25,9 @@ app.get("/IRLQuests", (req, res) => {
     res.sendFile(path.resolve("public/pages/IRLQuests/IRLQuests.html"))
 });
 
+app.get("/jokes", (req, res) => {
+    res.sendFile(path.resolve("public/pages/jokes/jokes.html"));
+});
 
 const PORT = 8080;
 app.listen(PORT, (error) =>{
