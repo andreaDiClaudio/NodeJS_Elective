@@ -1,26 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <title>Jokes</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="/"><img id="logo" src="/assets/images/upper_logo.jpeg"></a>
-            <a href="/jokes">Jokes</a>
-            <a href="/IRLQuests">IRLQuests</a>
-        </nav>
-    </header>
-    <main>
-        <h1>Jokes</h1>
-    </main>
-    <footer>
-        <p id="copyright-year"></p>
-    </footer>
-    <script src="assets/js/footer.js"></script>
-</body>
-</html>
+<h1>Jokes</h1>
+
+<h3 id="joke"></h3>
+
+<script>
+    const joke = $JOKE;
+    if (joke.delivery) {
+        document.getElementById("joke").innerText = joke.setup + ":" + joke.delivery;
+    } else {
+        document.getElementById("joke").innerText = joke.joke;
+    }
+    console.log(joke);
+</script>

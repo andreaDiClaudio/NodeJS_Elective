@@ -25,4 +25,4 @@ async function getJoke() {
 
 
 //console.log( await getJokes());
-export default {getJoke}; //it is a function reference that we can call in app.js
+export default getJoke; //it is a function reference that we can call in app.js
