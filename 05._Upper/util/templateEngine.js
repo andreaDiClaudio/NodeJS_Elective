@@ -1,5 +1,5 @@
 import fs from 'fs';
-import getJoke from "./jokes/joke.js"
+import getJoke from "./jokes.js";
 
 function renderPage(page, config={}) {
     const navbar = fs.readFileSync("./public/components/navbar/navbar.html").toString()

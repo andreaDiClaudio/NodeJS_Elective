@@ -9,13 +9,12 @@ import getJoke from "./util/jokes.js"
 //import path from "path";
 import fs from 'fs'; //Short for file system
 import templateEngine from './util/templateEngine.js';
-
 import express from "express";
-const app = express();
-
 import path from "path";
 
+const app = express();
 app.use(express.static("public"));
+app.use(express.urlencoded({extended: true}));
 
 
 const frontpage = templateEngine.readPage("./public/pages/frontpage/frontpage.html");
@@ -23,12 +22,15 @@ const frontpagePage = templateEngine.renderPage(frontpage,  {
     tabtitle: "Upper | Welcome"
 });
 
-
 const IRLQuests = templateEngine.readPage("./public/pages/IRLQuests/IRLQuests.html");
 const IRLQuestsPage = templateEngine.renderPage(IRLQuests, {
     tabtitle: "Upper | IRLQuests"
 });
 
+const contact = templateEngine.readPage("./public/pages/contact/contact.html");
+const contactPage = templateEngine.renderPage(contact, {
+    tabtitle: "Upper | Contact"
+});
 
 
 app.get("/", (req, res) => {
@@ -37,6 +39,10 @@ app.get("/", (req, res) => {
 
 app.get("/IRLQuests", (req, res) => {
     res.send(IRLQuestsPage);
+});
+
+app.get("/contact", (req,res) => {
+    res.send(contactPage);
 });
 
 app.get("/jokes", async (req, res) => {
@@ -50,7 +56,18 @@ app.get("/jokes", async (req, res) => {
     res.send(jokesPage);
 });
 
-const PORT = 8080;
+/*API*/
+app.post("/api/contact", (req,res) => {
+    console.log(req.body);
+    res.send(req.body);
+});
+
+
+if (process.env.ENV === "DEV"){
+    //setup dev..
+}
+
+const PORT = Number(process.env.PORT) || 8082; //TODO
 app.listen(PORT, (error) =>{
     if(error){
         console.log(error);

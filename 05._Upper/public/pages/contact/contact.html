@@ -1,0 +1,18 @@
+<h1>Contact</h1>
+<h2>Leave a feedback</h2>
+
+<form action="/api/contact" method="post">
+    <label>Email
+        <input type="email" id="email" placeholder="youremail@example.com" name="email">
+    </label>
+    <label>Phone Number
+        <input type="tel" placeholder="+45 00 00 00 00" name="phone"></input>
+    </label>
+    <label>Subject
+        <input type="text" id="subject" placeholder="subject" name="subject">
+    </label>
+    <label>Message
+        <textarea type="text" id="message" placeholder="Contact" cols="40" rows="10" name="message"></textarea>
+    </label>
+    <button type="submit" value="send-feedback">Submit</button>
+</form>
