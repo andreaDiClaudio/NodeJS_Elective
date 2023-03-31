@@ -34,6 +34,14 @@ app.get("/museumguards", (req,res) => {
     res.sendFile(__dirname + "/public/museumGuards/museumGuards.html")
 });
 
+//proxy
+app.get ("/proxy", (req, res) => {
+    const test="";
+    fetch("https://www.google.com/")
+    .then(response => response.text())//because it is not json
+    .then(result => res.send(result));
+});
+
 /* API */
 app.get("/api/tanks", (req, res) => {
     res.send({data: tanks})

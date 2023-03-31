@@ -1,6 +1,20 @@
 <script>
+  import {onMount} from "svelte";
+
+  import { BASE_URL } from "./store/urlDomain.js";
+
   import Home from "./components/Home/Home.svelte";
-    import Piblings from "./components/Piblings/Piblings.svelte";
+  import Piblings from "./components/Piblings/Piblings.svelte";
+
+  onMount(async () => {
+    const registerResponse = await fetch(`${BASE_URL}/gotham/batman?hobby=Catching the badg uys`);
+    const batmanRegisteredMessage = await registerResponse.json();
+
+    const registeredResponse = await fetch(`${BASE_URL}/gotham`);
+    const registeredResponseMessage = await registeredResponse.json();
+    console.log(registeredResponseMessage);
+
+  })
   
   const piblings = ["John", "Mark"];
   const niblings = [
