@@ -6,6 +6,8 @@ const app = express();
 
 app.use(express.static("public"));//you are specifying where to find the static files. and allows the client to access the file only inside that folder
 
+import guardRouter from "./routes/guardRouter";
+
 const tanksUtil = require("./util/tanks.js");
 console.log(tanksUtil);
 
@@ -43,21 +45,6 @@ app.get ("/proxy", (req, res) => {
 });
 
 /* API */
-app.get("/api/tanks", (req, res) => {
-    res.send({data: tanks})
-})
-
-app.get("/api/visitors", (req, res) => {
-    res.send({data: visitorCount})
-})
-
-app.get("/api/guards", (req, res) => {
-    console.log(req.query); //req.query is an object with key value pairs
-    if (req.query.passport === "secret") {
-        return res.redirect("/api/tanks");
-    }
-    res.send({message: "You are not allowed to see tanks. Use the correct secret"});
-});
 
 app.put("/api/visitors", (req, res) => {
     res.send({data: ++visitorCount})
