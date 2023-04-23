@@ -1,11 +1,11 @@
 import { Router } from "express";
-import db from "../databases/connection.js"
-
 const router = Router();
+import db from "../databases/connection.js";
 
 router.get("/planets", async (req, res) => {
-    const planets = await db.all(`SELECT * FROM planets`);
-    res.send({ planets });
+    const planets = await db.all("SELECT * FROM planets;");
+
+    res.send({ data: planets });
 });
 
 

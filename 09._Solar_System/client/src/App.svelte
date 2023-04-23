@@ -1,7 +1,8 @@
 <script>
-  import { Router, Link, Route } from "svelte-navigator";
-  import Home from "./components/Home/Home.svelte";
-  import Planets from "./components/Planets/Planets.svelte";
+	import { Router, Link, Route } from "svelte-navigator";
+  import Home from "./pages/Home/Home.svelte";
+  import Planets from "./pages/Planets/Planets.svelte";
+
 </script>
 
 <Router>
@@ -12,7 +13,6 @@
   <Route path="/">
     <Home />
   </Route>
-
   <Route path="/planets">
     <Planets />
   </Route>
