@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS people (
 
 // Seeding (DML)
 if (isDeleteMode) {
-    db.exec(`INSERT INTO planets (name, is_habitable) VALUES ('Mercury', False);`);
+
     db.exec(`INSERT INTO planets (name, is_habitable) VALUES ('Venus', False);`);
     db.exec(`INSERT INTO planets (name, is_habitable) VALUES ('Earth', True);`);
     db.exec(`INSERT INTO planets (name, is_habitable) VALUES ('Mars', False);`);
