@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color</title>
+</head>
+<body>
+    <h1>Pick a color</h1>
+
+    <input id="input-color" type="color">
+    <button id="save-color-button" onclick=handleSaveColor()>Save Color</button>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        const socket= io();
+        
+        function handleSaveColor(){
+            const color = document.getElementById("input-color");
+
+            socket.emit("color", {data: color.value});
+        }
+
+        socket.on("a color was chosen", (data) => {
+            console.log(data)
+            document.body.style.background = data.data;
+        })
+
+        //socket.emit("ready event", {data: "i am ready"});
+    </script>
+</body>
+</html>
