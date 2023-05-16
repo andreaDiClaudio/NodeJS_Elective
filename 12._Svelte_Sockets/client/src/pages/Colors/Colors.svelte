@@ -1,5 +1,6 @@
 <script>
     import io from "socket.io-client";
+    import {colorsList} from "../../stores/golablStore.js";
 
     const socket = io("localhost:8080");
 
@@ -7,6 +8,9 @@
   
     function handleColorChoosen() {
       socket.emit("a client choose a color", { data: choosenColor });
+      colorsList.update(list => {
+        list.push()
+      });
     }
 
     socket.on("a new color just dropped", (data) => {
